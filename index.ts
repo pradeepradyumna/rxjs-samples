@@ -1,22 +1,29 @@
-import {Observable} from 'rxjs'
+import { Observable } from "rxjs";
 
-const observable= new Observable(subscriber=>{
+const observable = new Observable(subscriber => {
   subscriber.next(1);
   subscriber.next(2);
   subscriber.next(3);
 
-  setTimeout(()=>{
+  setTimeout(() => {
     subscriber.next(4);
     subscriber.complete();
-  },2000)
-})
+  }, 2000);
+});
 
 console.log("I'm about to subscribe");
 
-observable.subscribe({
-  next(x){console.log("We got: "+x);},
-  error(err){console.log("Error is:"+err);},
-  complete(){console.log("COMPLETED!!");}
-})
+const subscriber = observable.subscribe({
+  next(x) {
+    console.log("We got: " + x);
+  },
+  error(err) {
+    console.log("Error is:" + err);
+  },
+  complete() {
+    console.log("COMPLETED!!");
+  }
+});
 
+subscriber.unsubscribe();
 console.log("All DOne");
