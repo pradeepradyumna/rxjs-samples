@@ -10,3 +10,13 @@ const observable= new Observable(subscriber=>{
     subscriber.complete();
   },2000)
 })
+
+console.log("I'm about to subscribe");
+
+observable.subscribe({
+  next(x){console.log("We got: "+x);},
+  error(err){console.log("Error is:"+err);},
+  complete(){console.log("COMPLETED!!");}
+})
+
+console.log("All DOne");
